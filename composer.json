@@ -1,0 +1,39 @@
+{
+	"name": "aimeos/ai-slim",
+	"description": "Aimeos Slim PHP micro framework extension",
+	"keywords": ["aimeos", "extension", "slim", "extension", "shop", "e-commerce"],
+	"homepage": "https://aimeos.org",
+	"type": "aimeos-extension",
+	"license": "LGPL-3.0",
+	"support": {
+		"source": "https://github.com/aimeos/ai-slim",
+		"issues": "https://github.com/aimeos/ai-slim/issues",
+		"forum": "https://aimeos.org/help",
+		"wiki": "https://aimeos.org/docs"
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/aimeos/php-coveralls.git"
+		}
+	],
+	"prefer-stable": true,
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=5.5",
+		"slim/slim": "~3.0",
+		"composer/installers": "~1.0",
+		"akrabat/rka-ip-address-middleware": "~0.4"
+	},
+	"require-dev": {
+		"satooshi/php-coveralls": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"Aimeos\\MW\\": "lib/mwlib/src/MW/"
+		},
+		"classmap": [
+			"lib/custom/src"
+		]
+	}
+}
