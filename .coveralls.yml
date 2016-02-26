@@ -1,0 +1,3 @@
+src_dir: ext/ai-slim
+json_path: ext/ai-slim/coveralls.json
+coverage_clover: ext/ai-slim/lib/custom/tests/coverage.xml
