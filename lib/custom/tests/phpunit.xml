@@ -2,9 +2,6 @@
 
 <phpunit bootstrap="bootstrap.php">
 	<testsuites>
-		<testsuite name="MShop suite">
-			<directory>MShop/</directory>
-		</testsuite>
 		<testsuite name="MW suite">
 			<directory>MW/</directory>
 		</testsuite>
