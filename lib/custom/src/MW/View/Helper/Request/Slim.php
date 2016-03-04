@@ -30,8 +30,8 @@ class Slim
 	public function __construct( \Aimeos\MW\View\Iface $view, \Psr\Http\Message\ServerRequestInterface $request )
 	{
 		$ip = $request->getAttribute( 'ip_address' );
-		$route = $request->getAttribute( 'route' )->getName();
+		$route = $request->getAttribute( 'route' );
 
-		parent::__construct( $view, $request, $ip, $route );
+		parent::__construct( $view, $request, $ip, ( $route ? $route->getName() : null ) );
 	}
 }
