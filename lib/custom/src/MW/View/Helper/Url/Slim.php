@@ -55,9 +55,9 @@ class Slim
 	public function transform( $target = null, $controller = null, $action = null, array $params = array(), array $trailing = array(), array $config = array() )
 	{
 		if( isset( $config['absoluteUri'] ) && (bool) $config['absoluteUri'] === true ) {
-			return $this->router->pathFor( $target, $this->fixed, $params );
+			return $this->router->pathFor( $target, $this->fixed + $params, $params );
 		}
 
-		return $this->router->relativePathFor( $target, $this->fixed, $params );
+		return $this->router->relativePathFor( $target, $this->fixed + $params, $params );
 	}
 }
