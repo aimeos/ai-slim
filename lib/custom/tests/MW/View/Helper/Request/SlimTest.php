@@ -31,8 +31,11 @@ class SlimTest extends \PHPUnit_Framework_TestCase
 
 		$this->mock = $this->getMock( '\Psr\Http\Message\ServerRequestInterface' );
 
-		$this->mock->expects( $this->exactly( 2 ) )->method( 'getAttribute' )
-			->will( $this->onConsecutiveCalls( '127.0.0.1', $route ) );
+		$this->mock->expects( $this->once() )->method( 'getAttribute' )
+			->will( $this->returnValue( $route ) );
+
+		$this->mock->expects( $this->once() )->method( 'getServerParams' )
+			->will( $this->returnValue( array( 'REMOTE_ADDR' => '127.0.0.1' ) ) );
 
 		$this->object = new \Aimeos\MW\View\Helper\Request\Slim( $view, $this->mock );
 	}
