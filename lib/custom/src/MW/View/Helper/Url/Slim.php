@@ -18,7 +18,7 @@ namespace Aimeos\MW\View\Helper\Url;
  * @subpackage View
  */
 class Slim
-	extends \Aimeos\MW\View\Helper\Base
+	extends \Aimeos\MW\View\Helper\Url\Base
 	implements \Aimeos\MW\View\Helper\Url\Iface
 {
 	private $router;
@@ -54,6 +54,8 @@ class Slim
 	 */
 	public function transform( $target = null, $controller = null, $action = null, array $params = array(), array $trailing = array(), array $config = array() )
 	{
+		$params = $this->sanitize( $params );
+
 		if( isset( $config['absoluteUri'] ) && (bool) $config['absoluteUri'] === true ) {
 			return $this->router->pathFor( $target, $this->fixed + $params, $params );
 		}
