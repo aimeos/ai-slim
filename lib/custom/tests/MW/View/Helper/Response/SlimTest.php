@@ -20,7 +20,7 @@ class SlimTest extends \PHPUnit_Framework_TestCase
 			$this->markTestSkipped( '\Slim\Http\Stream is not available' );
 		}
 
-		$response = $this->getMock( '\Psr\Http\Message\ResponseInterface' );
+		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
 
 		$view = new \Aimeos\MW\View\Standard();
 		$this->object = new \Aimeos\MW\View\Helper\Response\Slim( $view, $response );

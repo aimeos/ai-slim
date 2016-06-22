@@ -29,7 +29,7 @@ class SlimTest extends \PHPUnit_Framework_TestCase
 		$route = new \Slim\Route( array( 'GET' ), '/shop', null );
 		$route->setName( 'route' );
 
-		$this->mock = $this->getMock( '\Psr\Http\Message\ServerRequestInterface' );
+		$this->mock = $this->getMockBuilder( '\Psr\Http\Message\ServerRequestInterface' )->getMock();
 
 		$this->mock->expects( $this->once() )->method( 'getAttribute' )
 			->will( $this->returnValue( $route ) );
