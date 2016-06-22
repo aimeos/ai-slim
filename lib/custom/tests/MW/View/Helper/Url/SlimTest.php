@@ -22,7 +22,7 @@ class SlimTest extends \PHPUnit_Framework_TestCase
 		}
 
 		$view = new \Aimeos\MW\View\Standard();
-		$this->router = new \Slim\Router();
+		$this->router = new \Aimeos\Slim\Router();
 		$this->object = new \Aimeos\MW\View\Helper\Url\Slim( $view, $this->router, array( 'site' => 'default' ) );
 	}
 

@@ -57,9 +57,9 @@ class Slim
 		$params = $this->sanitize( $params );
 
 		if( isset( $config['absoluteUri'] ) && (bool) $config['absoluteUri'] === true ) {
-			return $this->router->pathFor( $target, $this->fixed + $params, $params );
+			return $this->router->pathFor( $target, $this->fixed + $params );
 		}
 
-		return $this->router->relativePathFor( $target, $this->fixed + $params, $params );
+		return $this->router->relativePathFor( $target, $this->fixed + $params );
 	}
 }
