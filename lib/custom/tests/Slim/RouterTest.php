@@ -15,6 +15,10 @@ class RouterTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+		if( !class_exists( '\Slim\Router', false ) ) {
+			$this->markTestSkipped( '\Slim\Router is not available' );
+		}
+
         $this->router = new \Aimeos\Slim\Router;
     }
 
