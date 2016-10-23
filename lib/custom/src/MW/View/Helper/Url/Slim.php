@@ -60,6 +60,6 @@ class Slim
 			return $this->router->pathFor( $target, $this->fixed + $params );
 		}
 
-		return $this->router->relativePathFor( $target, $this->fixed + $params );
+		return $this->router->relativePathFor( $target, $params + $this->fixed );
 	}
 }
