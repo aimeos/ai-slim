@@ -49,7 +49,7 @@ class SlimTest extends \PHPUnit_Framework_TestCase
 		$this->router->setBasePath( 'https://localhost/' );
 		$this->router->map( array( 'GET' ), 'shop/{site}', null )->setName( 'route' );
 
-		$result = $this->object->transform( 'route', 'catalog', 'lists', array( 'key' => 'value' ), array(), $config );
+		$result = $this->object->transform( 'route', 'catalog', 'lists', array( 'key' => 'value' ), [], $config );
 
 		$this->assertEquals( 'https://localhost/shop/default?key=value', $result );
 	}
