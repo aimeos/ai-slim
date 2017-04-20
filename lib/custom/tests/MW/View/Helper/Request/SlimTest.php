@@ -9,7 +9,7 @@
 namespace Aimeos\MW\View\Helper\Request;
 
 
-class SlimTest extends \PHPUnit_Framework_TestCase
+class SlimTest extends \PHPUnit\Framework\TestCase
 {
 	private $object;
 	private $mock;
