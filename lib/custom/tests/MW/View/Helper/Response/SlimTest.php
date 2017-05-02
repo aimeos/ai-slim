@@ -57,7 +57,7 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 
 	public function testCreateStreamInvalid()
 	{
-		$this->setExpectedException( '\Exception' );
+		$this->expectException( '\Exception' );
 		$this->object->createStream( -1 );
 	}
 }
