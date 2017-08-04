@@ -86,4 +86,79 @@ class Router extends \Slim\Router
 
 		return $url;
 	}
+
+    /**
+     * Pull route info for a request with a bad method to decide whether to
+     * return a not-found error (default) or a bad-method error, then run
+     * the handler for that error, returning the resulting response.
+     *
+     * Used for cases where an incoming request has an unrecognized method,
+     * rather than throwing an exception and not catching it all the way up.
+     *
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     * @return ResponseInterface
+     */
+    protected function processInvalidMethod(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $router = $this->container->get('router');
+        if (is_callable([$request->getUri(), 'getBaseUrl']) && is_callable([$router, 'getBaseUrl'])) {
+            $router->setBasePath($request->getUri()->getBaseUrl());
+        }
+
+        $request = $this->dispatchRouterAndPrepareRoute($request, $router);
+        $routeInfo = $request->getAttribute('routeInfo', [RouterInterface::DISPATCH_STATUS => Dispatcher::NOT_FOUND]);
+
+        if ($routeInfo[RouterInterface::DISPATCH_STATUS] === Dispatcher::METHOD_NOT_ALLOWED) {
+            return $this->handleException(
+                new MethodNotAllowedException($request, $response, $routeInfo[RouterInterface::ALLOWED_METHODS]),
+                $request,
+                $response
+            );
+        }
+
+        return $this->handleException(new NotFoundException($request, $response), $request, $response);
+    }
+
+    /**
+     * Process a request
+     *
+     * This method traverses the application middleware stack and then returns the
+     * resultant Response object.
+     *
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     * @return ResponseInterface
+     *
+     * @throws Exception
+     * @throws MethodNotAllowedException
+     * @throws NotFoundException
+     */
+    public function process(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        // Ensure basePath is set
+        $router = $this->container->get('router');
+        if (is_callable([$request->getUri(), 'getBaseUrl']) && is_callable([$router, 'getBaseUrl'])) {
+            $router->setBasePath($request->getUri()->getBaseUrl());
+        }
+
+        // Dispatch the Router first if the setting for this is on
+        if ($this->container->get('settings')['determineRouteBeforeAppMiddleware'] === true) {
+            // Dispatch router (note: you won't be able to alter routes after this)
+            $request = $this->dispatchRouterAndPrepareRoute($request, $router);
+        }
+
+        // Traverse middleware stack
+        try {
+            $response = $this->callMiddlewareStack($request, $response);
+        } catch (Exception $e) {
+            $response = $this->handleException($e, $request, $response);
+        } catch (Throwable $e) {
+            $response = $this->handlePhpError($e, $request, $response);
+        }
+
+        $response = $this->finalize($response);
+
+        return $response;
+    }
 }
