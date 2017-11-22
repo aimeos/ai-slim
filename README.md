@@ -7,7 +7,7 @@
 [![Build Status](https://travis-ci.org/aimeos/ai-slim.png?branch=master)](https://travis-ci.org/aimeos/ai-slim)
 [![Coverage Status](https://coveralls.io/repos/aimeos/ai-slim/badge.svg?branch=master)](https://coveralls.io/r/aimeos/ai-slim?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aimeos/ai-slim/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aimeos/ai-slim/?branch=master)
-[![HHVM Status](http://hhvm.h4cc.de/badge/aimeos/ai-slim.svg)](http://hhvm.h4cc.de/package/aimeos/ai-slim)
+[![License](https://poser.pugx.org/aimeos/ai-slim/license.svg)](https://packagist.org/packages/aimeos/ai-slim)
 
 The Aimeos web shop components can integrate into almost any PHP application and uses the infrastructure of the application for building URLs, caching content, configuration settings, logging messages, session handling, sending e-mails or handling translations.
 
