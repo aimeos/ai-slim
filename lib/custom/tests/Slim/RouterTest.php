@@ -15,7 +15,7 @@ class RouterTest extends \PHPUnit\Framework\TestCase
 
     public function setUp()
     {
-		if( !class_exists( '\Slim\Router', false ) ) {
+		if( !class_exists( \Slim\Router::class, false ) ) {
 			$this->markTestSkipped( '\Slim\Router is not available' );
 		}
 

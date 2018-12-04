@@ -20,7 +20,7 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 			$this->markTestSkipped( '\Slim\Http\Stream is not available' );
 		}
 
-		$response = $this->getMockBuilder( '\Psr\Http\Message\ResponseInterface' )->getMock();
+		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
 
 		$view = new \Aimeos\MW\View\Standard();
 		$this->object = new \Aimeos\MW\View\Helper\Response\Slim( $view, $response );
@@ -35,8 +35,8 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 
 	public function testTransform()
 	{
-		$this->assertInstanceOf( '\Aimeos\MW\View\Helper\Response\Slim', $this->object->transform() );
-		$this->assertInstanceOf( '\Psr\Http\Message\ResponseInterface', $this->object->transform() );
+		$this->assertInstanceOf( \Aimeos\MW\View\Helper\Response\Slim::class, $this->object->transform() );
+		$this->assertInstanceOf( \Psr\Http\Message\ResponseInterface::class, $this->object->transform() );
 	}
 
 
@@ -44,20 +44,20 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 	{
 		$stream = $this->object->createStream( fopen( __FILE__, 'r' ) );
 
-		$this->assertInstanceOf( '\Slim\Http\Stream', $stream );
-		$this->assertInstanceOf( '\Psr\Http\Message\StreamInterface', $stream );
+		$this->assertInstanceOf( \Slim\Http\Stream::class, $stream );
+		$this->assertInstanceOf( \Psr\Http\Message\StreamInterface::class, $stream );
 	}
 
 
 	public function testCreateStreamFilename()
 	{
-		$this->assertInstanceOf( '\Psr\Http\Message\StreamInterface', $this->object->createStream( __FILE__ ) );
+		$this->assertInstanceOf( \Psr\Http\Message\StreamInterface::class, $this->object->createStream( __FILE__ ) );
 	}
 
 
 	public function testCreateStreamInvalid()
 	{
-		$this->setExpectedException( '\Exception' );
+		$this->setExpectedException( \Exception::class );
 		$this->object->createStream( -1 );
 	}
 }

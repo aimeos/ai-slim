@@ -29,7 +29,7 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 		$route = new \Slim\Route( array( 'GET' ), '/shop', null );
 		$route->setName( 'route' );
 
-		$this->mock = $this->getMockBuilder( '\Psr\Http\Message\ServerRequestInterface' )->getMock();
+		$this->mock = $this->getMockBuilder( \Psr\Http\Message\ServerRequestInterface::class )->getMock();
 
 		$this->mock->expects( $this->once() )->method( 'getAttribute' )
 			->will( $this->returnValue( $route ) );
@@ -49,8 +49,8 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 
 	public function testTransform()
 	{
-		$this->assertInstanceOf( '\Aimeos\MW\View\Helper\Request\Slim', $this->object->transform() );
-		$this->assertInstanceOf( '\Psr\Http\Message\ServerRequestInterface', $this->object->transform() );
+		$this->assertInstanceOf( \Aimeos\MW\View\Helper\Request\Slim::class, $this->object->transform() );
+		$this->assertInstanceOf( \Psr\Http\Message\ServerRequestInterface::class, $this->object->transform() );
 	}
 
 
