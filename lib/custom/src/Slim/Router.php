@@ -34,7 +34,7 @@ class Router extends \Slim\Router
 	 * @throws RuntimeException		 If named route does not exist
 	 * @throws InvalidArgumentException If required data not provided
 	 */
-	public function relativePathFor($name, array $data = [], array $queryParams = [])
+	public function relativePathFor( $name, array $data = [], array $queryParams = [] )
 	{
 		$route = $this->getNamedRoute($name);
 		$pattern = $route->getPattern();
@@ -47,16 +47,16 @@ class Router extends \Slim\Router
 		$routeDatas = array_reverse($routeDatas);
 
 		$segments = $segmentKeys = [];
-		foreach ($routeDatas as $routeData) {
-			foreach ($routeData as $item) {
-				if (is_string($item)) {
+		foreach ( $routeDatas as $routeData ) {
+			foreach ( $routeData as $item ) {
+				if ( is_string($item) ) {
 					// this segment is a static string
 					$segments[] = $item;
 					continue;
 				}
 
 				// This segment has a parameter: first element is the name
-				if (!array_key_exists($item[0], $data)) {
+				if ( !array_key_exists($item[0], $data) ) {
 					// we don't have a data element for this segment: cancel
 					// testing this routeData item, so that we can try a less
 					// specific routeData item.
@@ -67,20 +67,20 @@ class Router extends \Slim\Router
 				$segments[] = $data[$item[0]];
 				$segmentKeys[$item[0]] = true;
 			}
-			if (!empty($segments)) {
+			if ( !empty($segments) ) {
 				// we found all the parameters for this route data, no need to check
 				// less specific ones
 				break;
 			}
 		}
 
-		if (empty($segments)) {
+		if ( empty($segments) ) {
 			throw new InvalidArgumentException('Missing data for URL segment: ' . $segmentName);
 		}
 		$url = implode('', $segments);
 
 		$params = array_merge(array_diff_key($data, $segmentKeys), $queryParams);
-		if ($params) {
+		if ( $params ) {
 			$url .= '?' . http_build_query($params);
 		}
 
