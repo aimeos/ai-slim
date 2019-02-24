@@ -85,7 +85,7 @@ class TestHelper
 
 		$ctx->setLocale( $localeItem );
 
-		$ctx->setEditor( 'ai-slim:unittest' );
+		$ctx->setEditor( 'ai-slim:lib/custom' );
 
 		return $ctx;
 	}
