@@ -41,7 +41,7 @@ class Slim
 	 * @param \Psr\Http\Message\ServerRequestInterface $request
 	 * @return string|null IPv4 or IPv6 address or null if invalid
 	 */
-	protected function getIPAddress( \Psr\Http\Message\ServerRequestInterface $request )
+	protected function getIPAddress( \Psr\Http\Message\ServerRequestInterface $request ) : ?string
 	{
 		$server = $request->getServerParams();
 		$flags = FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6;
@@ -51,5 +51,7 @@ class Slim
 		) {
 			return $ip;
 		}
+
+		return null;
 	}
 }

@@ -29,7 +29,7 @@ class Slim
 	 * @param string|resource Absolute file path or file descriptor
 	 * @return \Psr\Http\Message\StreamInterface Stream object
 	 */
-	public function createStream( $resource )
+	public function createStream( $resource ) : \Psr\Http\Message\StreamInterface
 	{
 		if( is_resource( $resource ) === true ) {
 			return new \Slim\Http\Stream( $resource );
