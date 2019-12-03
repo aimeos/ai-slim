@@ -16,9 +16,7 @@
 	"require": {
 		"php": ">=5.5",
 		"composer/installers": "^1.0",
-		"aimeos/aimeos-core": "dev-master"
-	},
-	"require-dev": {
+		"aimeos/aimeos-core": "dev-master",
 		"slim/slim": "~3.0"
 	},
 	"autoload": {
