@@ -15,7 +15,7 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 	private $router;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		if( !class_exists( 'Slim\Router', false ) ) {
 			$this->markTestSkipped( '\Slim\Router is not available' );
@@ -27,7 +27,7 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object, $this->router );
 	}

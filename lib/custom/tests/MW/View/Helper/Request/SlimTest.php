@@ -15,7 +15,7 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 	private $mock;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		if( !interface_exists( '\Psr\Http\Message\ServerRequestInterface' ) ) {
 			$this->markTestSkipped( '\Psr\Http\Message\ServerRequestInterface is not available' );
@@ -41,7 +41,7 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object, $this->mock );
 	}

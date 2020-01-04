@@ -14,10 +14,13 @@
 	"prefer-stable": true,
 	"minimum-stability": "dev",
 	"require": {
-		"php": ">=5.5",
+		"php": "~7.1",
 		"composer/installers": "^1.0",
 		"aimeos/aimeos-core": "dev-master",
 		"slim/slim": "~3.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "~7.0||~8.0"
 	},
 	"autoload": {
 		"psr-4": {

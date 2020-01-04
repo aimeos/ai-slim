@@ -14,7 +14,7 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 	private $object;
 
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		if( !class_exists( '\Slim\Http\Stream' ) ) {
 			$this->markTestSkipped( '\Slim\Http\Stream is not available' );
@@ -27,7 +27,7 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 	}
 
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		unset( $this->object );
 	}
@@ -57,7 +57,7 @@ class SlimTest extends \PHPUnit\Framework\TestCase
 
 	public function testCreateStreamInvalid()
 	{
-		$this->setExpectedException( \Exception::class );
+		$this->expectException( \Exception::class );
 		$this->object->createStream( -1 );
 	}
 }
